@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>层次分析法介绍 | CookCv</title><meta name="description" content="背景 美国运筹学家Sasty于20世纪70年代初提出层次分析法AHP(Analytic Hierarchy Process) AHP：一种定量与特性相结合的、系统化、层次化的分析法。  深入分析实际问题，将有关因素自上而下分层（目标-准则&#x2F;指标-方案&#x2F;对象），上层受下层影响，而层内各因素基本上相对独立。 建立层次分析结构模型的步骤 step1: 将决策问题分为3个层次：目标层O，准则层C，方案层P"><meta name="keywords" content="层次分析法"><meta name="author" content="Kai Chen"><meta name="copyright" content="Kai Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cookcv.com/blog/2a6766e.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="层次分析法介绍"><meta property="og:url" content="http://cookcv.com/blog/2a6766e.html"><meta property="og:site_name" content="CookCv"><meta property="og:description" content="背景 美国运筹学家Sasty于20世纪70年代初提出层次分析法AHP(Analytic Hierarchy Process) AHP：一种定量与特性相结合的、系统化、层次化的分析法。  深入分析实际问题，将有关因素自上而下分层（目标-准则&#x2F;指标-方案&#x2F;对象），上层受下层影响，而层内各因素基本上相对独立。 建立层次分析结构模型的步骤 step1: 将决策问题分为3个层次：目标层O，准则层C，方案层P"><meta property="og:image" content="http://cookcv.com/null"><meta property="article:published_time" content="2019-12-31T17:01:01.000Z"><meta property="article:modified_time" content="2020-01-31T17:01:01.000Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-02-01 01:01:01'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">70</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">91</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">建立层次分析结构模型的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%80%A7%E5%88%B0%E5%AE%9A%E9%87%8F%E7%9A%84%E8%BD%AC%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">定性到定量的转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%88%99%E5%B1%82%E5%AF%B9%E7%9B%AE%E6%A0%87%E5%B1%82%E7%9A%84%E6%88%90%E5%AF%B9%E6%AF%94%E8%BE%83%E9%98%B5"><span class="toc-number">2.2.</span> <span class="toc-text">准则层对目标层的成对比较阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E6%B1%82%E8%A7%A3%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">层次分析法求解步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">数学表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9D%83%E5%90%91%E9%87%8F%E5%B9%B6%E4%BD%9C%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">3.2.</span> <span class="toc-text">计算权向量并作一致性检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%9D%83%E5%90%91%E9%87%8F%E4%BD%9C%E7%BB%84%E5%90%88%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">3.3.</span> <span class="toc-text">组合权向量（作组合一致性检验）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">3.4.</span> <span class="toc-text">一致性检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">示例</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CookCv</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">层次分析法介绍</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-01-31T17:01:01.000Z" title="更新于 2020-02-01 01:01:01">2020-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="背景">背景</h2>
+<p>美国运筹学家Sasty于20世纪70年代初提出层次分析法AHP(Analytic Hierarchy Process) AHP：一种定量与特性相结合的、系统化、层次化的分析法。 <a id="more"></a></p>
+<p>深入分析实际问题，将有关因素自上而下分层（目标-准则/指标-方案/对象），上层受下层影响，而层内各因素基本上相对独立。</p>
+<h2 id="建立层次分析结构模型的步骤">建立层次分析结构模型的步骤</h2>
+<p><strong>step1:</strong> 将决策问题分为3个层次：目标层O，准则层C，方案层P；每层有若干元素，各层元素间的关系用相连的直线表示。 <strong>step2:</strong> 构造成对比较阵，用成对比较阵法和1-9尺度，构造各层对上一层每一因素的成对比较阵。</p>
+<p><strong>例子：</strong> 选择旅游地 <strong>目标层：</strong> O选择旅游地 <strong>准则层：</strong> C1景色，C2费用，C3居住，C4饮食，C5旅途 <strong>方案层：</strong> P1桂林，P2黄山，P3北戴河</p>
+<p>接下来每个方案对每个准则进行评判。 <strong>成对比较阵的元素：</strong> 元素之间两两对比，采用相对比较尺度。 <strong>相对比较尺度<span class="math inline">\(a_{ij}\)</span></strong> 是由Sasty等人提出1-9尺度<span class="math inline">\(a_{ij}\)</span>取值1,2,...,9及其互反数1,1/2,...,1/9。</p>
+<h3 id="定性到定量的转化">定性到定量的转化</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">尺度<span class="math inline">\(a_{ij}\)</span></th>
+<th>1 2 3 4 5 6 7 8 9</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(C_i:C_j\)</span>的重要性</td>
+<td>相同 稍强 强 明显强 绝对强 ...</td>
+</tr>
+</tbody>
+</table>
+<p>如果因素Ci与Cj对目标影响相同，则尺度定义为1。</p>
+<h3 id="准则层对目标层的成对比较阵">准则层对目标层的成对比较阵</h3>
+<p>利用相对比较尺度<span class="math inline">\(a_{ij}\)</span>，比较各准则<span class="math inline">\(C_1,C_2,...,C_n\)</span>对目标的重要性<span class="math inline">\(C_i:C_j=&gt;a_{ij}\)</span>。设矩阵<span class="math inline">\(A = (a_{ij})_{m*n},a_{ij}&gt;0,a_{ji}=\frac{1}{a_{ij}}\)</span>。在这个例子里，A是5x5矩阵。</p>
+<p>同理可得<strong>方案层对准则层各因素的成对比较阵</strong>。3x3矩阵。</p>
+<h2 id="层次分析法求解步骤">层次分析法求解步骤</h2>
+<h3 id="数学表达式">数学表达式</h3>
+<ol type="1">
+<li>第2层对第1层的权重向量为： <span class="math inline">\(w^{(2)}=\left(w_{1}^{(2)}, \cdots, w_{n}^{(2)}\right)^{T}\)</span></li>
+<li>第3层对第2层的权重向量为： <span class="math inline">\(w_{k}^{(3)}=\left(w_{k 1}^{(0)}, \cdots, w_{k m}^{(3)}\right)^{T}, k=1,2, \cdots, n\)</span> 构造矩阵<span class="math inline">\(W^{(3)}=\left[w_{1}^{(3)}, \cdots, w_{n}^{(3)}\right]\)</span> 则第3层对底1层的组合权向量<span class="math inline">\(w^{(3)}=W^{(3)} w^{(2)}\)</span></li>
+<li>第s层对第1层的权重向量为: <span class="math inline">\(w^{(s)}=W^{(s)} W^{(s-1)} \cdots W^{(3)} w^{(2)}\)</span> 其中<span class="math inline">\(W^{(p)}\)</span>是由第p层对第p-1层权向量组成的矩阵。</li>
+</ol>
+<h3 id="计算权向量并作一致性检验">计算权向量并作一致性检验</h3>
+<p>对每一成对比较阵计算最大特征根和特征向量，作一致性检验，若通过，则特征向量为权重向量。 <strong>成对比较阵完全一致的情况：</strong> 元素满足<span class="math inline">\(a_{i j} \cdot a_{j k}=a_{i k}, \quad i, j, k=1,2, \cdots, n\)</span>的正反阵A称一致阵。 <strong>一致阵性质：</strong> ① A的秩为1，A的唯一非零特征根为n； ② A的任一列向量是对应于n的特征向量； ③ A的归一化特征向量可作为权向量。 <strong>成对比较阵不一致的情况：</strong> 对于实际问题中不一致（但在允许范围内）的成对比较阵A，我们可用对应于最大特征根<span class="math inline">\(\lambda\)</span>的特征向量作为权向量<span class="math inline">\(w\)</span>，<span class="math inline">\(Aw = \lambda w\)</span></p>
+<h3 id="组合权向量作组合一致性检验">组合权向量（作组合一致性检验）</h3>
+<p>将多层的权向量组合可作为决策的定量依据。</p>
+<h3 id="一致性检验">一致性检验</h3>
+<p>已知：n阶一致阵的唯一非零特征根为n； 结论：n阶正互反阵最大特征根<span class="math inline">\(\lambda \geq n\)</span>，且<span class="math inline">\(\lambda = n\)</span>时为一致阵 一致性指标：<span class="math inline">\(CI = \frac{\lambda -n}{n-1}\)</span>，CI越大，不一致越严重。 由于CI的大小受到矩阵规模的影响，所以加入了随机一致性指标RI，随机模拟得到<span class="math inline">\(a_{ij}\)</span>形成A，多次计算CI得到RI来修正。 |n| 1 | 2 | 3 | 4 | 5 | ... | |:-:|:-:|:-:|:-:|:-:|:-:|:-:| |RI| 0 | 0 | 0.58 | 0.90 | 1.12 | ... | <strong>定义一致性比率：</strong> <span class="math inline">\(CR = CI/RI\)</span> 当CR&lt;0.1时，通过一致性检验。</p>
+<h3 id="示例">示例</h3>
+<p><strong>组合权向量：</strong>第三层对第二层的计算结果 | <span class="math inline">\(k\)</span> | 1| 2 | 3 | 4 | 5 | | :---: | :-: | :-: | :-: | :-: | :-: | |<span class="math inline">\(w_k^{(3)}\)</span>| 0.595 <br> 0.277 <br> 0.129 <br>| 0.082 <br> 0.236 <br> 0.682 <br>| 0.429 <br> 0.429 <br> 0.142 <br>| 0.633 <br> 0.193 <br> 0.175 <br>| 0.166 <br> 0.166 <br> 0.668 <br>| |<span class="math inline">\(\lambda_k\)</span>|3.005 | 3.002 | 3.0 | 3.009 | 3.0 | |<span class="math inline">\(CI_k\)</span>| 0.003 | 0.001 | 0.0 | 0.005 | 0.0 | 其中第二层对第一层的计算结果为<span class="math inline">\(w^{(2)} : (0.263，0.475，0.055，0.090，0.110)\)</span> <span class="math inline">\(RI=0.58(n=3),得CI_k\)</span>均可通过一致性检验。 方案<span class="math inline">\(P_1\)</span>对目标的组合权重为0.595x0.263+...=0.300 方案层对目标的组合权重向量为<span class="math inline">\((0.300，0.246，0.456)^T\)</span> 可以得到第三个方案最优。</p>
+<blockquote>
+<p>参考自华中农业大学数学建模课程</p>
+</blockquote>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kai Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://cookcv.com/blog/2a6766e.html">http://cookcv.com/blog/2a6766e.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cookcv.com" target="_blank">CookCv</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/">层次分析法</a><a class="post-meta__tags" href="/tags/%E5%86%B3%E7%AD%96/">决策</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/308c4d8b.html"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">均值滤波器滤波</div></div></a></div><div class="next-post pull-right"><a href="/blog/4863b368.html"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">损失函数</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Kai Chen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  var script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

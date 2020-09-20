@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>几种主要的数据分布介绍 | CookCv</title><meta name="description" content="内容范围：正态分布，泊松分布，多项分布，二项分布，伯努利分布 简述：正态分布是上述分布趋于极限的分布，属于连续分布。其它属于离散分布。  伯努利分布(两点分布&#x2F;0-1分布)：伯努利试验指的是只有两种可能结果的单次随机试验。如果对伯努利试验独立重复n次则为n重伯努利试验。 伯努利分布函数为： \(f(x | p)&#x3D;\left\{\begin{array}{ll}{p^{x} q^{1-x},} &amp;a"><meta name="keywords" content="正态分布，泊松分布，多项分布，二项分布，伯努利分布"><meta name="author" content="Kai Chen"><meta name="copyright" content="Kai Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cookcv.com/blog/1876f78f.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="几种主要的数据分布介绍"><meta property="og:url" content="http://cookcv.com/blog/1876f78f.html"><meta property="og:site_name" content="CookCv"><meta property="og:description" content="内容范围：正态分布，泊松分布，多项分布，二项分布，伯努利分布 简述：正态分布是上述分布趋于极限的分布，属于连续分布。其它属于离散分布。  伯努利分布(两点分布&#x2F;0-1分布)：伯努利试验指的是只有两种可能结果的单次随机试验。如果对伯努利试验独立重复n次则为n重伯努利试验。 伯努利分布函数为： \(f(x | p)&#x3D;\left\{\begin{array}{ll}{p^{x} q^{1-x},} &amp;a"><meta property="og:image" content="http://cookcv.com/null"><meta property="article:published_time" content="2019-12-31T17:01:01.000Z"><meta property="article:modified_time" content="2020-01-31T17:01:01.000Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-02-01 01:01:01'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">70</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">91</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CookCv</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">几种主要的数据分布介绍</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-01-31T17:01:01.000Z" title="更新于 2020-02-01 01:01:01">2020-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p><strong>内容范围：正态分布，泊松分布，多项分布，二项分布，伯努利分布</strong></p>
+<p><strong>简述：</strong>正态分布是上述分布趋于极限的分布，属于连续分布。其它属于离散分布。 <a id="more"></a></p>
+<p><strong>伯努利分布</strong>(两点分布/0-1分布)：<strong>伯努利试验</strong>指的是只有两种可能结果的单次随机试验。如果对伯努利试验独立重复n次则为n重伯努利试验。</p>
+<p>伯努利分布函数为：</p>
+<p><span class="math inline">\(f(x | p)=\left\{\begin{array}{ll}{p^{x} q^{1-x},} &amp; {x=0,1} \\ {0,} &amp; {x \neq 0,1}\end{array}\right.\)</span></p>
+<p><strong>二项分布：</strong>二项分布是n重伯努利试验成功系数的离散概率分布。硬币正面朝上的概率为p,重复抛n次硬币，k次为正面的概率即为一个二项分布概率。</p>
+<p>二项分布概率分布函数：</p>
+<p><span class="math inline">\(p(x)=C_{n}^{x} p^{x} q^{n-x}(x=0,1,2,3, n)\)</span>其中n是试验次数，x是试验结果为正的次数，q是试验结果为正的概率，1-q是试验结果为负的概率。均值：<span class="math inline">\(\mu=n p\)</span>；方差：<span class="math inline">\(\sigma^{2}=n p q\)</span>；标准差：<span class="math inline">\(\sigma=\sqrt{n p q}\)</span></p>
+<p><strong>多项分布：</strong>多项分布是二项分布的推广。二项式做n次伯努利实验，规定了每次试验的结果只有两个，如果现在还是做n次试验，只不过每次试验的结果可以有多k个，且k个结果发生的概率互斥且和为1，则发生其中一个结果X次的概率就是多项式分布。多项分布的联合概率函数为：</p>
+<p><span class="math inline">\(P\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{k}=x_{k}\right)=\frac{n !}{x_{1} ! x_{2} ! \cdots x_{k} !} p_{1}^{x_{1}} p_{2}^{x_{2}} \cdots p_{k}^{x_{k}}\)</span></p>
+<p>多项分布对其每一个结果都有均值和方差，分别为：<span class="math inline">\(E\left(x_{i}\right)=n p_{i}, \operatorname{Var}\left(x_{i}\right)=n p_{i}\left(1-p_{i}\right)\)</span></p>
+<p><strong>泊松分布：</strong>适合用来描述单位时间<strong>/</strong>空间内随机事件发生的个数与其对应的概率。比如某医院平均每小时出生3个婴儿，在这种只知道平均数的情况下预测下一个小时会出生几个和其概率是多少。</p>
+<p>泊松分布概率分布函数：<span class="math inline">\(P(N(t)=n)=\frac{(\lambda t)^{n} e^{-\lambda t}}{n !}\)</span>，其中P表示概率，N表示一种函数关系，<span class="math inline">\(\lambda\)</span>在这里表示是时间频率，t 在这里表示时间，n 表示数量，P(N(1) = 3) 表示的是1个小时内出生3个婴儿的概率。接下来两个小时，一个婴儿都不出生的概率为</p>
+<p><span class="math inline">\(P(N(2)=0)=\frac{(3 \times 2)^{0} e^{-3 \times 2}}{0 !} \approx 0.0025\)</span></p>
+<p>可以看出该事件的发生可能性十分小。</p>
+<p>均值：<span class="math inline">\(\mu=\lambda\)</span>；方差：<span class="math inline">\(\sigma^{2}=\lambda\)</span></p>
+<p><strong>指数分布：</strong>可以从泊松分布推断出来。如果t时间内没有任何婴儿出生，则：</p>
+<p><span class="math inline">\(\begin{aligned} P(X&gt;t) &amp;=P(N(t)=0)=\frac{(\lambda t)^{0} e^{-\lambda t}}{0 !} =e^{-\lambda t} \end{aligned}\)</span></p>
+<p>，事件在t之内发生的概率为1减上述的值，为：</p>
+<p><span class="math inline">\(P(X \leq t)=1-P(X&gt;t)=1-e^{-\lambda t}\)</span></p>
+<p>例如，接下来15分钟，会有婴儿出生的概率是52.76%。</p>
+<p><span class="math inline">\(\begin{aligned} P(X \leq 0.25) &amp;=1-e^{-3 \times 0.25} \approx 0.5276 \end{aligned}\)</span></p>
+<p><strong>正态分布：</strong>概率密度函数为:<span class="math inline">\(f(x)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right)\)</span></p>
+<p>当<span class="math inline">\(\mu=0, \sigma=1\)</span>时称为标准正态分布，此时函数为：<span class="math inline">\(f(x)=\frac{1}{\sqrt{2 \pi}} e^{\left(-\frac{x^{2}}{2}\right)}\)</span></p>
+<p><strong>如何评判正态分布：</strong></p>
+<p><strong>1.</strong> 图形感受法：建立直方图或者枝干图，看图像的形状是否类似正态曲线，既土墩形或者钟形，并且两端对称。</p>
+<p><strong>2.</strong>计算区间<span class="math inline">\(\overline{x} \pm s, \overline{x} \pm 2 s, \overline{x} \pm 3 s\)</span>，看落在区间的百分百是否近似于68%，95%，100%。</p>
+<p><strong>3.</strong>求IQR和标准差s，计算IQR/s，如若是正态分布，则IQR/s≈1.3。</p>
+<p><strong>4.</strong> 建立正态概率图，如果近似正态分布，点会落在一条直线上。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kai Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://cookcv.com/blog/1876f78f.html">http://cookcv.com/blog/1876f78f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cookcv.com" target="_blank">CookCv</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/">正态分布</a><a class="post-meta__tags" href="/tags/%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83/">泊松分布</a><a class="post-meta__tags" href="/tags/%E5%A4%9A%E9%A1%B9%E5%88%86%E5%B8%83/">多项分布</a><a class="post-meta__tags" href="/tags/%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83/">二项分布</a><a class="post-meta__tags" href="/tags/%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83/">伯努利分布</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/dda9dbb9.html"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">凸优化</div></div></a></div><div class="next-post pull-right"><a href="/blog/18a085b4.html"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">命名实体识别步骤</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Kai Chen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  var script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CookCv - deeplearning</title><meta name="description" content="深度学习视觉"><meta name="keywords" content="‘computer vision’"><meta name="author" content="Kai Chen"><meta name="copyright" content="Kai Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cookcv.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="CookCv"><meta property="og:url" content="http://cookcv.com/page/2/"><meta property="og:site_name" content="CookCv"><meta property="og:description" content="深度学习视觉"><meta property="og:image" content="http://cookcv.com/null"><meta property="article:published_time" content="2020-09-20T09:32:38.489Z"><meta property="article:modified_time" content="2020-09-20T09:32:38.489Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-09-20 17:32:38'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">70</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">91</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CookCv</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">CookCv</h1><div id="site_subtitle"><span id="subtitle"></span></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/c31606b1.html" title="神经网络能否直接判断奇偶数">神经网络能否直接判断奇偶数</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-04T17:01:01.000Z" title="发表于 2020-03-05 01:01:01">2020-03-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/">自然语言处理NLP</a></span></div><div class="content">神经网络判断奇偶数
+拥有神经网络的深度学习比机器学习的一大特点是，深度学习的非线性转换能够实现一定程度上的特征提取和特征组合。但是，当你传入一批自然数进入模型中训练，想要预测奇偶性的时候，你会发现，这个任务有点难。但是，如果你将这些数值转为二进制的时候，这个任务又变得可行。可以看出，深度学习也需要我们做一下数据的预处理工作。当然，也侧边看出了神经网络并非万能。 
+1. 神经网络如何针对当前的任务建立模型 比如检测，分割，分类等问题。这些问题都有一个共同点，同一个类别的目标在高维空间里也在同一个区域。这样在高维空间里，我们的神经网络将这些空间分割成多个块，每个块预测出一个类别，就能达到很高的指标。
+2. 神经网络为什么无法直接通过自然数数据直接构建特征预测奇偶性 &gt;作者:王赟 Maigo(Facebook 研究科学家)
+机器学习里面有一个「没有免费午餐」定理（No Free Lunch Theorem）：任意一种算法，如果对于某些类型的问题效果好，必然对于另一些类型的问题效果差。各种模型都有自己的先验假设，如果数据分布符合这个先验假设，学习效果就好，否则就差。比如很多模型都假设数据 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/6883cd97.html" title="Beta分布随笔">Beta分布随笔</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">简介： beta分布可以看作一个概率的概率分布，描述所有概率出现的可能性大小。
+举例： 手中有一枚硬币，该硬币均匀度未知，现在让你说出抛一次出现正面的概率是多少。通过以往的先验知识来判断，正面概率为0.5的这个情况的概率最大。 
+
+image.png
+
+这张图是取了120次抛币的实验数据画出的Beta分布图，图中给出0.5的正面概率为最高的。假如现在连续抛了10次，8次为正面，那么此时你判断正面朝上最大概率的概率应该是多少。 
+通过Beta图像可以看出最大概率的正面概率已经大于0.5。
+与其它分布的联系： 以上Beta分布就简单介绍结束，其实写Beta分布是因为最近在研究狄利克雷分布。 Beta分布是二项分布的共轭先验概率分布； Dirichlet分布是多项式分布的共轭先验概率分布。 Beat分布可以描述二项分布的概率，是二项分布的概率分布。 Dirichlet分布可以描述出多项分布的概率，是多项分布的概率分布，会为每个事件选择概率最高的多项分布作为它的分布。在无监督聚类的时候会使用。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/510b302a.html" title="Anchor尺寸选择">Anchor尺寸选择</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="content">论文Link：Understanding the Effective Receptive Field in Deep Convolutional Neural Networks Code:https://github.com/sfzhang15/SFD
+这篇人脸检测器论文依据感受野来设计anchor的大小。
+在物体检测中，Anchor在每一层对应尺度该如何选择。 
+
+传播间隔相等原则 检测层的步长大小决定了anchor的间隔。例如conv3_3的步长为4，而其anchor尺寸为16x16，即每隔4个像素存在一个16x16的anchor，在所有检测层上，anchor的 尺寸均为步长的4倍，即为传播间隔相等原则。从而确保图像上不同尺寸的anchor密度相同，使得不同大小人脸能够很好的与anchor匹配上。
+
+如果网络浅层anchor设计中设计了很多小尺寸的anchor，因此会造成负样本数量剧增，从而引起小尺寸人脸的高false-positive率。 那么可以对于每一个小尺寸anchor，进行N次人脸和背景分类，选择其中某个背景score最高的一个作为该anchor的score，以此降低误检 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/ee15081e.html" title="深度学习问答">深度学习问答</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/LeetCode/">LeetCode</a></span></div><div class="content">感知器与逻辑回归的区别
+多层感知器是我们用于分类的最基本的神经网络之一。在二分类问题上，线性分类器的目的就是找一个超平面把正负两类分开，感知器相当于一个阶跃函数，直接区分是0还是1，而逻辑回归则是给予0到1之间的概率。当然，如果我们调节逻辑回归的阈值，使得输出非0即1，则就成了感知器。 
+
+DeepLearningQuestion21_1
+
+感知器的损失函数为误分类点的函数间隔之和，函数间隔可以理解为样本与分类超平面的距离。误分类点距离分类超平面越远，则损失函数值越大。只有误分类的点会影响损失函数的值。
+\(L=-y(w^Tx+b)\)
+\(w^Tx+b\)是分割的超平面
+
+当正类数据分类到-1结果中，y=1，但超平面对应的值为-1，此时损失值大于0。
+当负类数据分类到1结果中，y=-1，但超平面对应的值为1，此时损失值大于0。
+
+Logistic回归的损失函数为logistic损失函数，当分类错误时，函数间隔越大，则损失函数值越大。当分类正确时，样本点距离超平面越远，则损失函数值越小。所有的样本点分布情况都会影响损失函数最后的值。模型更加平滑。
+\(log(1+exp(-y(w^Tx ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/3db5b568.html" title="Boosting_Bagging介绍">Boosting_Bagging介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">介绍
+Boosting
+1.Boosting方法训练基分类器是采用串行的方式，各个基分类器之间有依赖。 2.Boosting的基本思路是将基分类器层层叠加，每一层在训练的时候，对前一层基分类器分错的样本给予更高的权重。测试时，根据各层分类器的结果的加权得到最终的结果。stacking 
+Bagging
+
+Bagging因为各基分类器之间无强依赖，所以可以进行串行训练。以基于决策树基分类器的随机森林为代表。
+为了让基分类器之间相互独立，需要将数据集分为若干子集（当训练样本数量较少时，子集之间会有重叠部分）。
+Bagging更像天赋不同且单一的几个孩子在单独学习，学习的内容可以相同也可以不同。由于个体之间有差异，最终做出的判断不完全一致，每个个体单独判断，然后通过投票的方式做出最后集体的决策。voting
+
+理解
+接下来我们将会从消除基分类器的偏差和方差的角度来理解Boosting和Bagging方法的差异。 基分类器：弱分类器。基分类器的错误。是偏差和方差两种错误之和。偏差主要是由分类器的表达能力有限导致的系统性错误，表现在训练不够收敛。方差是由分类器对样本分布过于敏感，导致在训练样本过 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/3477354.html" title="CBNet组合主干网络">CBNet组合主干网络</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="content">
+论文目标
+
+每次一个新的网络出现都需要经过高代价的ImageNet预训练处理。
+现存主干网络都是为分类场景设计，直接拿来用，效果并不能做到最优。
+
+综上在现有主干网络的基础上建立一个更有强大的主干网络，称为复合主干网络。 **** 
+论文主要做法
+
+组合连接邻近独立优秀主干网络，CBNet 将前一个主干网络的输出特征（即高层抽象特征）输入到下一个主干网络的对应层级中，一直到最后一个主干网络（Lead Backbone），然后使用 Lead Backbone 的特征图进行目标检测。通过这样做，将多个高级和低级特性融合在一起，以生成更丰富的特征表示。本网络结构的预训练模型参数来自于每个独立的网络。
+
+四种主干组合的形式： 1. 邻近高级组合：（Adjacent Higher-Level Composition，AHLC）来自辅助主干网的每个输出特征使用复合连接块输入到相邻的主干网中。
+
+同层组合：（Same Level Composition，SLC）是另一种简单的合成样式，它将前一个主干的相邻低层阶段的输出提供给后一个主干。如图所示，此样式不使用复合连接块。来自低层主干网的特征被直接添 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/da5401e0.html" title="Haar特征">Haar特征</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="content">简介
+当下的人脸检测主要为以下两种方法： 1. 基于知识的检测方法：检测器官特征和器官之间的几何关系 2. 基于统计的检测方法：像素相似性度量
+基于知识的方法主要利用先验知识将人脸看作器官特征的组合，根据眼睛、眉毛、嘴巴、鼻子等器官的特征以及相互之间的几何位置关系来检测人脸。
+基于统计的方法则将人脸看作一个整体的模式——二维像素矩阵，从统计的观点通过大量人脸图像样本构造人脸模式空间，根据相似度量来判断人脸是否存在。
+本文主要介绍的是基于统计的检测方法Haar，Haar特征值反映了图像的灰度变化情况。通过改变特征模板的大小和位置，可在图像子窗口中穷举出大量的特征。 
+Haar分类器=Haar-like特征+AdaBoost算法+级联+积分图 要理解Haar分类器，那么就需要理解构成它的每一部分。 Haar-like特征：检测提供基础特征； 积分图：为了加速特征的计算而使用的算法； AdaBoost：训练区分人脸与非人脸强分类器； 级联：把强分类器级联在一起，提高准确率。
+Haar特征其数目计算
+w=白色区域像素之和-黑色区域像素之和 得到的就是这个区域的一个特征值，这个特征值可以用来区分 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/9c9393d0.html" title="ImageNet图像分类对抗攻击-方案整理">ImageNet图像分类对抗攻击-方案整理</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="content">
+
+
+
+imageNet_1
+
+
+赛题地址：https://tianchi.aliyun.com/competition/entrance/231761/forum 赛题介绍：按照最大浮动32干扰的话，最高分为5。
+方案关键词： 模型ensemble；多尺度ensemble；数据增强。
+
+第一名(Score:4.4)
+
+在最初开始，从 ImageNet 数据集中挑选出 1000张可以被线下防御模型正确分类的图片，每一张图片分别属于一个类别。在攻击的时候，直接用 TargetLabel 类别对应的图片作为初始化。
+使用前一次提交的对抗图片作为本次训练的初始化。
+
+Code：https://drive.google.com/open?id=1Up1fV-PaiHin3xSqXicsP9yyc1dWUD47
+第二名(Score:4.1)
+本组的方案类似 M-DI2-FGSM，差别在于噪声添加方式:
+
+在梯度下降时添加动量，并把当前梯度依无穷范数\(L_{\infty}\)作为归一化处理；文献：Boosting adversarial attacks with momentum
+对三个防御模型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/8e69a262.html" title="FasterRCNN结构梳理">FasterRCNN结构梳理</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="content">Faster R-CNN最突出的贡献就在于提出了Region Proposal Network（RPN）代替了Selective Search，从而将候选区域提取的时间开销几乎降为0（2s -&gt; 0.01s） 
+结构梳理
+一切都要从一张图的特征开始说起：features。 
+RPN接到features后，先做了一次3x3的卷积，再由两个1x1卷积操作分别得到分类score:2x9与位置偏移loc:4x9结构，这两个结构都会被ProposalCreator与rpn_loss所使用。
+AnchorTargetCreator用box与anchor联合得到拟合目标：loc与label。这里前景与背景的label总数为256，loc图外的标记为-1。
+RPN_LOSS将会利用上述预测信息与标签信息计算loss，以此来调整使得RPN网络预测的score与loc更好。只对前景计算回归损失。
+ProposalCreator的任务是拿到score与loc后，将loc转为roi，按照分数筛选先取12000，再通过极大值抑制去除重叠后再按照score选取前2000个roi。
+ProposalTarge ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/blog/54dce366.html" title="P_NP_NPC">P_NP_NPC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">
+1.简介
+P问题：一类可以通过确定性图灵机在多项式时间内解决的问题集合。 NP问题：一类可以通过非确定性图灵机在多项式时间内解决的决策问题集合。 P与NP：任何可以被图灵机在多项式时间内解决的问题都可以被非确定性的图灵机解决，不确定是否是真子集。 NPC问题：一个NPC问题需要同时满足两个条件。①该问题是NP问题；②NP里所有问题可以在多项式时间内转为该问题。 NPH问题：只需要满足NPC中的第二个性质，所以，NPC是NPH的子集。 上述元素的近似关系图：  \(\mathbf{P} \subseteq \mathbf{co}-\mathbf{N} \mathbf{P}\)： ①因为P在运算下封闭，如果一个语言在P中，这时他的补语言co-P也在P中。综上得P与co-P都在NP中。 ②一个语言在co-NP当且仅当他的补语言在NP。综上得P与co-P都在co-NP中。 ) 补语(复杂性类)：记为co-C。一个决策问题 X是反C的成员，当且仅当它的互补 X是在复杂类C【维基百科】。补的例子：一个重要问题是数字是否是素数，它的补充是确定一个数字是否是一个复合数，这里补语的域是超过1的所有整数 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Kai Chen</div><div class="author-info__description">深度学习视觉</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">70</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length_num">91</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="sticky_layout"><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/blog/5566fb07.html" title="Text Summarization">Text Summarization</a><time datetime="2020-03-11T17:01:01.000Z" title="发表于 2020-03-12 01:01:01">2020-03-12</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/blog/4f7ea913.html" title="CNN如何学到图片中的位置信息">CNN如何学到图片中的位置信息</a><time datetime="2020-03-04T17:01:01.000Z" title="发表于 2020-03-05 01:01:01">2020-03-05</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/blog/1b2588a1.html" title="TFLite安卓项目解读">TFLite安卓项目解读</a><time datetime="2020-03-04T17:01:01.000Z" title="发表于 2020-03-05 01:01:01">2020-03-05</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/blog/3b862564.html" title="字向量的产生">字向量的产生</a><time datetime="2020-03-04T17:01:01.000Z" title="发表于 2020-03-05 01:01:01">2020-03-05</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/blog/393c1f25.html" title="差异分析">差异分析</a><time datetime="2020-03-04T17:01:01.000Z" title="发表于 2020-03-05 01:01:01">2020-03-05</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LeetCode/"><span class="card-category-list-name">LeetCode</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">40</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%83%A8%E7%BD%B2/"><span class="card-category-list-name">深度学习部署</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/"><span class="card-category-list-name">自然语言处理NLP</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/"><span class="card-category-list-name">计算机视觉CV</span><span class="card-category-list-count">21</span></a></li>
+            
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Anchor/" style="font-size: 1.1em; color: #999">Anchor</a> <a href="/tags/Attention/" style="font-size: 1.1em; color: #999">Attention</a> <a href="/tags/Bagging/" style="font-size: 1.1em; color: #999">Bagging</a> <a href="/tags/Bayes/" style="font-size: 1.1em; color: #999">Bayes</a> <a href="/tags/Beta%E5%88%86%E5%B8%83/" style="font-size: 1.1em; color: #999">Beta分布</a> <a href="/tags/Boosting/" style="font-size: 1.1em; color: #999">Boosting</a> <a href="/tags/CNN/" style="font-size: 1.1em; color: #999">CNN</a> <a href="/tags/FasterRCNN/" style="font-size: 1.1em; color: #999">FasterRCNN</a> <a href="/tags/GAN/" style="font-size: 1.1em; color: #999">GAN</a> <a href="/tags/HMM/" style="font-size: 1.3em; color: #99a1ac">HMM</a> <a href="/tags/Haar/" style="font-size: 1.1em; color: #999">Haar</a> <a href="/tags/IOU/" style="font-size: 1.1em; color: #999">IOU</a> <a href="/tags/LGSPP/" style="font-size: 1.1em; color: #999">LGSPP</a> <a href="/tags/LOSS/" style="font-size: 1.3em; color: #99a1ac">LOSS</a> <a href="/tags/LSTM/" style="font-size: 1.1em; color: #999">LSTM</a> <a href="/tags/NP%E9%97%AE%E9%A2%98/" style="font-size: 1.1em; color: #999">NP问题</a> <a href="/tags/PCA/" style="font-size: 1.1em; color: #999">PCA</a> <a href="/tags/Python/" style="font-size: 1.3em; color: #99a1ac">Python</a> <a href="/tags/TFLite/" style="font-size: 1.1em; color: #999">TFLite</a> <a href="/tags/Text-Summarization/" style="font-size: 1.1em; color: #999">Text Summarization</a> <a href="/tags/Word2Vec/" style="font-size: 1.1em; color: #999">Word2Vec</a> <a href="/tags/XGBoost/" style="font-size: 1.1em; color: #999">XGBoost</a> <a href="/tags/mmdetection/" style="font-size: 1.1em; color: #999">mmdetection</a> <a href="/tags/one-hot/" style="font-size: 1.1em; color: #999">one hot</a> <a href="/tags/%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" style="font-size: 1.1em; color: #999">中值定理</a> <a href="/tags/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">主成分分析</a> <a href="/tags/%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83/" style="font-size: 1.1em; color: #999">二项分布</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">人脸检测</a> <a href="/tags/%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83/" style="font-size: 1.1em; color: #999">伯努利分布</a> <a href="/tags/%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0/" style="font-size: 1.1em; color: #999">似然函数</a> <a href="/tags/%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB/" style="font-size: 1.1em; color: #999">余弦距离</a> <a href="/tags/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" style="font-size: 1.1em; color: #999">假设检验</a> <a href="/tags/%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99/" style="font-size: 1.1em; color: #999">关联规则</a> <a href="/tags/%E5%86%B3%E7%AD%96/" style="font-size: 1.1em; color: #999">决策</a> <a href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91/" style="font-size: 1.5em; color: #99a9bf">决策树</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">凸优化</a> <a href="/tags/%E5%88%86%E7%B1%BB%E6%8D%9F%E5%A4%B1/" style="font-size: 1.1em; color: #999">分类损失</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 1.1em; color: #999">卷积</a> <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">可视化工具</a> <a href="/tags/%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/" style="font-size: 1.3em; color: #99a1ac">命名实体识别</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">11</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">一月 2020</span><span class="card-archive-list-count">59</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">70</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-09-20T09:32:38.264Z"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Kai Chen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

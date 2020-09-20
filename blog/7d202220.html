@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>深度学习归一化 | CookCv</title><meta name="description" content="内容包含：BatchNormalization、LayerNormalization、InstanceNorm、GroupNorm、SwitchableNorm  #1.简述 1.1 论文链接 (1)、Batch Normalization https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1502.03167.pdf (2)、Layer Normalizaiton https:&#x2F;&#x2F;arxiv.org&#x2F;"><meta name="keywords" content="归一化, BN, LN, IN, GN, SN"><meta name="author" content="Kai Chen"><meta name="copyright" content="Kai Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cookcv.com/blog/7d202220.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="深度学习归一化"><meta property="og:url" content="http://cookcv.com/blog/7d202220.html"><meta property="og:site_name" content="CookCv"><meta property="og:description" content="内容包含：BatchNormalization、LayerNormalization、InstanceNorm、GroupNorm、SwitchableNorm  #1.简述 1.1 论文链接 (1)、Batch Normalization https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1502.03167.pdf (2)、Layer Normalizaiton https:&#x2F;&#x2F;arxiv.org&#x2F;"><meta property="og:image" content="http://cookcv.com/null"><meta property="article:published_time" content="2019-12-31T17:01:01.000Z"><meta property="article:modified_time" content="2020-01-31T17:01:01.000Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-02-01 01:01:01'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">70</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">91</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">1.1 论文链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">1.2 整体介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#layer-normalizaiton"><span class="toc-number">3.</span> <span class="toc-text">2.2 Layer Normalizaiton</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instance-normalization"><span class="toc-number">4.</span> <span class="toc-text">2.3 Instance Normalization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#group-normalization"><span class="toc-number">5.</span> <span class="toc-text">2.4 Group Normalization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switchable-normalization"><span class="toc-number">6.</span> <span class="toc-text">2.5 Switchable Normalization</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E6%AF%94%E8%BE%83"><span class="toc-number"></span> <span class="toc-text">3 结果比较</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number"></span> <span class="toc-text">4 参考链接：</span></a></div></div></div><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CookCv</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-link"></i><span> 留言板</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">深度学习归一化</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-12-31T17:01:01.000Z" title="发表于 2020-01-01 01:01:01">2020-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-01-31T17:01:01.000Z" title="更新于 2020-02-01 01:01:01">2020-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/">计算机视觉CV</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p><strong>内容包含：</strong>BatchNormalization、LayerNormalization、InstanceNorm、GroupNorm、SwitchableNorm <a id="more"></a> #1.简述</p>
+<h2 id="论文链接">1.1 论文链接</h2>
+<p>(1)、Batch Normalization https://arxiv.org/pdf/1502.03167.pdf</p>
+<p>(2)、Layer Normalizaiton https://arxiv.org/pdf/1607.06450v1.pdf</p>
+<p>(3)、Instance Normalization https://arxiv.org/pdf/1607.08022.pdf https://github.com/DmitryUlyanov/texture_nets</p>
+<p>(4)、Group Normalization https://arxiv.org/pdf/1803.08494.pdf</p>
+<p>(5)、Switchable Normalization https://arxiv.org/pdf/1806.10779.pdf https://github.com/switchablenorms/Switchable-Normalization</p>
+<h2 id="整体介绍">1.2 整体介绍</h2>
+<p>归一化层，目前主要有这几个方法，Batch Normalization（2015年）、Layer Normalization（2016年）、Instance Normalization（2017年）、Group Normalization（2018年）、Switchable Normalization（2018年）；</p>
+<p><strong>将输入的图像shape记为[N, C, H, W]，这几个方法主要的区别就是在:</strong></p>
+<p>batchNorm是在batch上，对NHW做归一化，对小batchsize效果不好； layerNorm在通道方向上，对CHW归一化，主要对RNN作用明显； instanceNorm在图像像素上，对HW做归一化，用在风格化迁移； GroupNorm将channel分组，然后再做归一化； SwitchableNorm是将BN、LN、IN结合，赋予权重，让网络自己去学习归一化层应该使用什么方法。 <img src="images/BN_LN_IN_GN-01.png" alt="image.png" /></p>
+<p>#2.详细解说</p>
+<p>##2.1 Batch Normalization <img src="images/BatchNormalization.png" alt="image.png" /> <strong>算法过程：</strong> (1)、沿着通道计算每个batch的均值u (2)、沿着通道计算每个batch的方差σ<sup>2 (3)、对x做归一化，x’=(x-u)/开根号(σ</sup>2+ε) (4)、加入缩放和平移变量γ和β ,归一化后的值，y=γx’+β <strong>加入缩放平移变量的原因是：</strong> 不一定每次都是标准正态分布，也许需要偏移或者拉伸。保证每一次数据经过归一化后还保留原有学习来的特征，同时又能完成归一化操作，加速训练。 这两个参数是用来学习的参数。</p>
+<p><strong>整体公式:</strong> <span class="math inline">\(y=\frac{x-\mathrm{E}[x]}{\sqrt{\operatorname{Var}[x]+\epsilon}} * \gamma+\beta\)</span></p>
+<p><strong>前向传播CODE:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def Batchnorm(x, gamma, beta, bn_param):</span><br><span class="line"></span><br><span class="line">    # x_shape:[B, C, H, W]</span><br><span class="line">    running_mean &#x3D; bn_param[&#39;running_mean&#39;]</span><br><span class="line">    running_var &#x3D; bn_param[&#39;running_var&#39;]</span><br><span class="line">    results &#x3D; 0.</span><br><span class="line">    eps &#x3D; 1e-5</span><br><span class="line"></span><br><span class="line">    x_mean &#x3D; np.mean(x, axis&#x3D;(0, 2, 3), keepdims&#x3D;True)</span><br><span class="line">    x_var &#x3D; np.var(x, axis&#x3D;(0, 2, 3), keepdims&#x3D;True0)</span><br><span class="line">    x_normalized &#x3D; (x - x_mean) &#x2F; np.sqrt(x_var + eps)</span><br><span class="line">    results &#x3D; gamma * x_normalized + beta</span><br><span class="line"></span><br><span class="line">    # 因为在测试时是单个图片测试，这里保留训练时的均值和方差，用在后面测试时用</span><br><span class="line">    running_mean &#x3D; momentum * running_mean + (1 - momentum) * x_mean</span><br><span class="line">    running_var &#x3D; momentum * running_var + (1 - momentum) * x_var</span><br><span class="line"></span><br><span class="line">    bn_param[&#39;running_mean&#39;] &#x3D; running_mean</span><br><span class="line">    bn_param[&#39;running_var&#39;] &#x3D; running_var</span><br><span class="line"></span><br><span class="line">    return results, bn_param</span><br></pre></td></tr></table></figure>
+<p><strong>pytorch中的API:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.BatchNorm1d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;True, track_running_stats&#x3D;True)</span><br><span class="line">torch.nn.BatchNorm2d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;True, track_running_stats&#x3D;True)</span><br><span class="line">torch.nn.BatchNorm3d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;True, track_running_stats&#x3D;True)</span><br><span class="line"></span><br><span class="line"># num_features： 来自期望输入的特征数，该期望输入的大小为’batch_size x num_features [x width]’</span><br><span class="line"># eps： 为保证数值稳定性（分母不能趋近或取0）,给分母加上的值。默认为1e-5。</span><br><span class="line"># momentum： 动态均值和动态方差所使用的动量。默认为0.1。</span><br><span class="line"># affine： 布尔值，当设为true，给该层添加可学习的仿射变换参数。</span><br><span class="line"># track_running_stats：布尔值，当设为true，记录训练过程中的均值和方差</span><br></pre></td></tr></table></figure>
+<h2 id="layer-normalizaiton">2.2 Layer Normalizaiton</h2>
+<p><strong>batch normalization存在以下缺点：</strong></p>
+<p>(1)、对batchsize的大小比较敏感，由于每次计算均值和方差是在一个batch上，所以如果batchsize太小，则计算的均值、方差不足以代表整个数据分布； (2)、BN实际使用时需要计算并且保存某一层神经网络batch的均值和方差等统计信息，对于对一个固定深度的前向神经网络（DNN，CNN）使用BN，很方便；但对于RNN来说，sequence的长度是不一致的，换句话说RNN的深度不是固定的，不同的time-step需要保存不同的statics特征，可能存在一个特殊sequence比其他sequence长很多，这样training时，计算很麻烦。</p>
+<p><strong>与BN不同，LN是针对深度网络的某一层的所有神经元的输入按以下公式进行normalize操作。</strong> <span class="math inline">\(\mu^{l}=\frac{1}{H} \sum_{i=1}^{H} a_{i}^{l} \quad \sigma^{l}=\sqrt{\frac{1}{H} \sum_{i=1}^{H}\left(a_{i}^{l}-\mu^{l}\right)^{2}}\)</span> <strong>BN与LN的区别在于：</strong></p>
+<p>(1)、LN中同层神经元输入拥有相同的均值和方差，不同的输入样本有不同的均值和方差； (2)、BN中则针对不同神经元输入计算均值和方差，同一个batch中的输入拥有相同的均值和方差。 (3)、LN用于RNN效果比较明显，但是在CNN上，不如BN。 <strong>前向传播代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def Layernorm(x, gamma, beta):</span><br><span class="line"></span><br><span class="line">    # x_shape:[B, C, H, W]</span><br><span class="line">    results &#x3D; 0.</span><br><span class="line">    eps &#x3D; 1e-5</span><br><span class="line"></span><br><span class="line">    x_mean &#x3D; np.mean(x, axis&#x3D;(1, 2, 3), keepdims&#x3D;True)</span><br><span class="line">    x_var &#x3D; np.var(x, axis&#x3D;(1, 2, 3), keepdims&#x3D;True0)</span><br><span class="line">    x_normalized &#x3D; (x - x_mean) &#x2F; np.sqrt(x_var + eps)</span><br><span class="line">    results &#x3D; gamma * x_normalized + beta</span><br><span class="line">    return results</span><br></pre></td></tr></table></figure>
+<p><strong>Pytorch API:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.LayerNorm(normalized_shape, eps&#x3D;1e-05, elementwise_affine&#x3D;True)</span><br><span class="line"># normalized_shape： 输入尺寸[∗×normalized_shape[0]×normalized_shape[1]×…×normalized_shape[−1]]</span><br><span class="line"># eps： 为保证数值稳定性（分母不能趋近或取0）,给分母加上的值。默认为1e-5。</span><br><span class="line"># elementwise_affine： 布尔值，当设为true，给该层添加可学习的仿射变换参数。</span><br></pre></td></tr></table></figure>
+<h2 id="instance-normalization">2.3 Instance Normalization</h2>
+<p>BN注重对每个batch进行归一化，保证数据分布一致，因为判别模型中结果取决于数据整体分布。</p>
+<p>但是<strong>图像风格化</strong>中，生成结果主要依赖于某个图像实例，所以对整个batch归一化不适合图像风格化中，因而对HW做归一化。可以加速模型收敛，并且保持每个图像实例之间的独立。 <strong>公式：</strong><span class="math inline">\(y_{t i j k}=\frac{x_{t i j k}-\mu_{t i}}{\sqrt{\sigma_{t i}^{2}+\epsilon}}, \quad \mu_{t i}=\frac{1}{H W} \sum_{l=1}^{W} \sum_{m=1}^{H} x_{t i l m}, \quad \sigma_{t i}^{2}=\frac{1}{H W} \sum_{l=1}^{W} \sum_{m=1}^{H}\left(x_{t i l m}-m u_{t i}\right)^{2}\)</span> <strong>前向代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def Instancenorm(x, gamma, beta):</span><br><span class="line"></span><br><span class="line">    # x_shape:[B, C, H, W]</span><br><span class="line">    results &#x3D; 0.</span><br><span class="line">    eps &#x3D; 1e-5</span><br><span class="line"></span><br><span class="line">    x_mean &#x3D; np.mean(x, axis&#x3D;(2, 3), keepdims&#x3D;True)</span><br><span class="line">    x_var &#x3D; np.var(x, axis&#x3D;(2, 3), keepdims&#x3D;True0)</span><br><span class="line">    x_normalized &#x3D; (x - x_mean) &#x2F; np.sqrt(x_var + eps)</span><br><span class="line">    results &#x3D; gamma * x_normalized + beta</span><br><span class="line">    return results</span><br></pre></td></tr></table></figure>
+<p><strong>Pytorch API:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.InstanceNorm1d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;False, track_running_stats&#x3D;False)</span><br><span class="line">torch.nn.InstanceNorm2d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;False, track_running_stats&#x3D;False)</span><br><span class="line">torch.nn.InstanceNorm3d(num_features, eps&#x3D;1e-05, momentum&#x3D;0.1, affine&#x3D;False, track_running_stats&#x3D;False)</span><br><span class="line"></span><br><span class="line"># num_features： 来自期望输入的特征数，该期望输入的大小为’batch_size x num_features [x width]’</span><br><span class="line"># eps： 为保证数值稳定性（分母不能趋近或取0）,给分母加上的值。默认为1e-5。</span><br><span class="line"># momentum： 动态均值和动态方差所使用的动量。默认为0.1。</span><br><span class="line"># affine： 布尔值，当设为true，给该层添加可学习的仿射变换参数。</span><br><span class="line"># track_running_stats：布尔值，当设为true，记录训练过程中的均值和方差；</span><br></pre></td></tr></table></figure>
+<h2 id="group-normalization">2.4 Group Normalization</h2>
+<p>主要是针对Batch Normalization对小batchsize效果差，GN将channel方向分group，然后每个group内做归一化，算(C//G)<em>H</em>W的均值，这样与batchsize无关，不受其约束。 <strong>前向code：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def GroupNorm(x, gamma, beta, G&#x3D;16):</span><br><span class="line"></span><br><span class="line">    # x_shape:[B, C, H, W]</span><br><span class="line">    results &#x3D; 0.</span><br><span class="line">    eps &#x3D; 1e-5</span><br><span class="line">    x &#x3D; np.reshape(x, (x.shape[0], G, x.shape[1]&#x2F;16, x.shape[2], x.shape[3]))</span><br><span class="line"></span><br><span class="line">    x_mean &#x3D; np.mean(x, axis&#x3D;(2, 3, 4), keepdims&#x3D;True)</span><br><span class="line">    x_var &#x3D; np.var(x, axis&#x3D;(2, 3, 4), keepdims&#x3D;True0)</span><br><span class="line">    x_normalized &#x3D; (x - x_mean) &#x2F; np.sqrt(x_var + eps)</span><br><span class="line">    results &#x3D; gamma * x_normalized + beta</span><br><span class="line">    return results</span><br></pre></td></tr></table></figure>
+<p><strong>Pytorch API:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.GroupNorm(num_groups, num_channels, eps&#x3D;1e-05, affine&#x3D;True)</span><br><span class="line"># num_groups：需要划分为的groups</span><br><span class="line"># num_features： 来自期望输入的特征数，该期望输入的大小为’batch_size x num_features [x width]’</span><br><span class="line"># eps： 为保证数值稳定性（分母不能趋近或取0）,给分母加上的值。默认为1e-5。</span><br><span class="line"># momentum： 动态均值和动态方差所使用的动量。默认为0.1。</span><br><span class="line"># affine： 布尔值，当设为true，给该层添加可学习的仿射变换参数。</span><br></pre></td></tr></table></figure>
+<h2 id="switchable-normalization">2.5 Switchable Normalization</h2>
+<p><strong>本篇论文作者认为：</strong></p>
+<p>(1)、第一，归一化虽然提高模型泛化能力，然而归一化层的操作是人工设计的。在实际应用中，解决不同的问题原则上需要设计不同的归一化操作，并没有一个通用的归一化方法能够解决所有应用问题； (2)、第二，一个深度神经网络往往包含几十个归一化层，通常这些归一化层都使用同样的归一化操作，因为手工为每一个归一化层设计操作需要进行大量的实验。</p>
+<p>因此作者提出自适配归一化方法——Switchable Normalization（SN）来解决上述问题。与强化学习不同，SN使用可微分学习，为一个深度网络中的每一个归一化层确定合适的归一化操作。 <strong>公式：</strong><span class="math inline">\(\hat{h}_{n c i j}=\gamma \frac{h_{n c i j}-\Sigma_{k \in \Omega} w_{k} \mu_{k}}{\sqrt{\Sigma_{k \in \Omega} w_{k}^{\prime} \sigma_{k}^{2}+\epsilon}}+\beta\)</span></p>
+<p><span class="math inline">\(w_{k}=\frac{e^{\lambda_{k}}}{\Sigma_{z \in\{\mathrm{in}, \ln , \mathrm{bn}\}} e^{\lambda_{z}}}, \quad k \in\{\mathrm{in}, \ln , \mathrm{bn}\}\)</span></p>
+<p><span class="math inline">\(\mu_{\mathrm{in}}=\frac{1}{H W} \sum_{i, j}^{H, W} h_{n c i j}, \sigma_{\mathrm{in}}^{2}=\frac{1}{H W} \sum_{i, j}^{H, W}\left(h_{n c i j}-\mu_{\mathrm{in}}\right)^{2}\)</span></p>
+<p><span class="math inline">\(\mu_{\ln }=\frac{1}{C} \sum_{c=1}^{C} \mu_{\mathrm{in}}, \quad \sigma_{\ln }^{2}=\frac{1}{C} \sum_{c=1}^{C}\left(\sigma_{\mathrm{in}}^{2}+\mu_{\mathrm{in}}^{2}\right)-\mu_{\mathrm{ln}}^{2}\)</span></p>
+<p><span class="math inline">\(\mu_{\mathrm{bn}}=\frac{1}{N} \sum_{n=1}^{N} \mu_{\mathrm{in}}, \quad \sigma_{\mathrm{bn}}^{2}=\frac{1}{N} \sum_{n=1}^{N}\left(\sigma_{\mathrm{in}}^{2}+\mu_{\mathrm{in}}^{2}\right)-\mu_{\mathrm{bn}}^{2}\)</span></p>
+<p><strong>前向传播CODE：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def SwitchableNorm(x, gamma, beta, w_mean, w_var):</span><br><span class="line">    # x_shape:[B, C, H, W]</span><br><span class="line">    results &#x3D; 0.</span><br><span class="line">    eps &#x3D; 1e-5</span><br><span class="line"></span><br><span class="line">    mean_in &#x3D; np.mean(x, axis&#x3D;(2, 3), keepdims&#x3D;True)</span><br><span class="line">    var_in &#x3D; np.var(x, axis&#x3D;(2, 3), keepdims&#x3D;True)</span><br><span class="line"></span><br><span class="line">    mean_ln &#x3D; np.mean(x, axis&#x3D;(1, 2, 3), keepdims&#x3D;True)</span><br><span class="line">    var_ln &#x3D; np.var(x, axis&#x3D;(1, 2, 3), keepdims&#x3D;True)</span><br><span class="line"></span><br><span class="line">    mean_bn &#x3D; np.mean(x, axis&#x3D;(0, 2, 3), keepdims&#x3D;True)</span><br><span class="line">    var_bn &#x3D; np.var(x, axis&#x3D;(0, 2, 3), keepdims&#x3D;True)</span><br><span class="line"></span><br><span class="line">    mean &#x3D; w_mean[0] * mean_in + w_mean[1] * mean_ln + w_mean[2] * mean_bn</span><br><span class="line">    var &#x3D; w_var[0] * var_in + w_var[1] * var_ln + w_var[2] * var_bn</span><br><span class="line"></span><br><span class="line">    x_normalized &#x3D; (x - mean) &#x2F; np.sqrt(var + eps)</span><br><span class="line">    results &#x3D; gamma * x_normalized + beta</span><br><span class="line">    return results</span><br></pre></td></tr></table></figure>
+<h1 id="结果比较">3 结果比较</h1>
+<figure>
+<img src="images/BN_LN_IN_GN-02.png" alt="image.png" /><figcaption>image.png</figcaption>
+</figure>
+<h1 id="参考链接">4 参考链接：</h1>
+<blockquote>
+<p>本篇大部分内容摘抄自<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao214/article/details/81037416" class="uri">https://blog.csdn.net/liuxiao214/article/details/81037416</a></p>
+</blockquote>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kai Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://cookcv.com/blog/7d202220.html">http://cookcv.com/blog/7d202220.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cookcv.com" target="_blank">CookCv</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BD%92%E4%B8%80%E5%8C%96/">归一化</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/b08494e7.html"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">检测任务Loss之GIOU</div></div></a></div><div class="next-post pull-right"><a href="/blog/f328077.html"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">深度学习视觉中的感受野</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Kai Chen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  var script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
