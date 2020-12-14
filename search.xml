@@ -2796,13 +2796,16 @@ w_{21} &amp; w_{22} &amp; w_{23}
       </tags>
   </entry>
   <entry>
-    <title>图像开运算与闭运算</title>
+    <title>项目管理5大过程组，42个过程</title>
     <url>/blog/null.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>项目管理5大过程组，42个过程 <a id="more"></a></p>
 <h2 id="启动过程组">启动过程组：</h2>
 <ol type="1">
 <li><strong>制定项目章程</strong>：诞生项目，并为项目经理“正名”；</li>
-<li><strong>识别干系人</strong>：搞清楚谁与项目相关； ## 规划过程组：</li>
+<li><strong>识别干系人</strong>：搞清楚谁与项目相关；</li>
+</ol>
+<h2 id="规划过程组">规划过程组：</h2>
+<ol start="3" type="1">
 <li><strong>制定项目管理计划</strong>：编制项目执行的蓝图；</li>
 <li><strong>收集需求</strong>：收集要做什么；</li>
 <li><strong>定义范围</strong>：确定要做什么；</li>
@@ -2822,7 +2825,10 @@ w_{21} &amp; w_{22} &amp; w_{23}
 <li><strong>实施定性风险分析</strong>：揭开风险的面纱；</li>
 <li><strong>实施定量风险分析</strong>：揭开风险的真相；</li>
 <li><strong>规划风险应对</strong>：定义如何应对风险；</li>
-<li><strong>规划采购</strong>：买什么，如何买； ## 执行过程组：</li>
+<li><strong>规划采购</strong>：买什么，如何买；</li>
+</ol>
+<h2 id="执行过程组">执行过程组：</h2>
+<ol start="23" type="1">
 <li><strong>指导与管理项目执行</strong>：按图索骥；</li>
 <li><strong>实施质量保证</strong>：通过过程保证质量；</li>
 <li><strong>组建项目团队</strong>：让巧妇能为有米之炊；</li>
@@ -2830,7 +2836,10 @@ w_{21} &amp; w_{22} &amp; w_{23}
 <li><strong>管理项目团队</strong>：大家好才是真的好；</li>
 <li><strong>发布信息</strong>：把信息传递给需要的人；</li>
 <li><strong>管理干系人期望</strong>：沟通并满足干系人的需求；</li>
-<li><strong>实施采购</strong>：购买要买的东西； ## 监控过程组：</li>
+<li><strong>实施采购</strong>：购买要买的东西；</li>
+</ol>
+<h2 id="监控过程组">监控过程组：</h2>
+<ol start="31" type="1">
 <li><strong>监控项目工作</strong>：盯着，不停地盯着；</li>
 <li><strong>实施整体变更控制</strong>：让变更在可控之内；</li>
 <li><strong>核实范围</strong>：让用户接受项目成果；</li>
@@ -2840,7 +2849,10 @@ w_{21} &amp; w_{22} &amp; w_{23}
 <li><strong>实施质量控制</strong>：让结果满足既定的合格标准；</li>
 <li><strong>报告绩效</strong>：是骡子是马拉出来溜溜；</li>
 <li><strong>监控风险</strong>：让风险在可控之内；</li>
-<li><strong>管理采购</strong>：让本次购买可控； ## 收尾过程组：</li>
+<li><strong>管理采购</strong>：让本次购买可控；</li>
+</ol>
+<h2 id="收尾过程组">收尾过程组：</h2>
+<ol start="41" type="1">
 <li><strong>结束项目或阶段</strong>：给项目（阶段）画“句号”；</li>
 <li><strong>结束采购</strong>：给本次购买画“句号”。</li>
 </ol>
@@ -2849,7 +2861,7 @@ w_{21} &amp; w_{22} &amp; w_{23}
         <category>信息系统项目管理师-高级</category>
       </categories>
       <tags>
-        <tag>项目管理</tag>
+        <tag>软考</tag>
       </tags>
   </entry>
 </search>
